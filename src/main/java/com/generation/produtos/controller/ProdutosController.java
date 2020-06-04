@@ -24,13 +24,13 @@ import com.generation.produtos.repository.ProdutosRepository;
 
 @RestController
 @RequestMapping("/produtos")
+@CrossOrigin("*")
 public class ProdutosController {
 	
 	@Autowired
 	private ProdutosRepository produtoRepository;
 	
 	@GetMapping
-	@CrossOrigin
 	public List<Produto> listar () {
 		List<Produto> produtos = produtoRepository.findAll();
 		
@@ -38,7 +38,6 @@ public class ProdutosController {
 	}
 	
 	@GetMapping("{id}")
-	@CrossOrigin
 	public ResponseEntity<Produto> listarProduto (@PathVariable Long id) {
 		Optional<Produto> produto = produtoRepository.findById(id);
 		if(produto.isPresent()) {
@@ -51,7 +50,6 @@ public class ProdutosController {
 	
 	@PostMapping
 	@Transactional
-	@CrossOrigin
 	public ResponseEntity<Produto> cadastrar (@RequestBody Produto produto, UriComponentsBuilder uriBuilder) {
 	
 		Produto produtos = produtoRepository.save(produto);
@@ -61,7 +59,6 @@ public class ProdutosController {
 	
 	@PutMapping("{id}")
 	@Transactional
-	@CrossOrigin
 	public ResponseEntity<Produto> atualizar (@PathVariable Long id, @RequestBody Produto produto) {
 		Optional<Produto> optional = produtoRepository.findById(id);
 		if(optional.isPresent()) {
@@ -81,7 +78,6 @@ public class ProdutosController {
 	
 	@DeleteMapping("{id}")
 	@Transactional
-	@CrossOrigin
 	public ResponseEntity<Produto> remover (@PathVariable Long id) {
 		Optional<Produto> optional = produtoRepository.findById(id);
 		if (optional.isPresent()) {
