@@ -5,10 +5,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.hibernate.annotations.GenericGenerator;
+
 @Entity
 public class Produto {
 	
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id 
+	@GeneratedValue(generator = "increment")
+	@GenericGenerator(name= "increment", strategy = "increment")
 	private Long id;
 	
 	private String nome;
