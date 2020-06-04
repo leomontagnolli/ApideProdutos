@@ -75,6 +75,7 @@ public class ProdutosController {
 	}
 	
 	@DeleteMapping("{id}")
+	@Transactional
 	public ResponseEntity<Produto> remover (@PathVariable Long id) {
 		Optional<Produto> optional = produtoRepository.findById(id);
 		if (optional.isPresent()) {
