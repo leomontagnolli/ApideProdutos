@@ -41,6 +41,7 @@ public class ProdutosController {
 	public ResponseEntity<Produto> listarProduto (@PathVariable Long id) {
 		Optional<Produto> produto = produtoRepository.findById(id);
 		if(produto.isPresent()) {
+			//tratamento de erro teste
 			return ResponseEntity.ok(produto.get());
 		}
 		
